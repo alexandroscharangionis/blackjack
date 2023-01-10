@@ -37,36 +37,41 @@ def compare(user_score, computer_score):
         return "You lose."
 
 
-computer_cards = []
-user_cards = []
-is_game_over = False
+def play_game():
+    computer_cards = []
+    user_cards = []
+    is_game_over = False
 
-for _ in range(2):
-    user_cards.append(deal_card())
-    computer_cards.append(deal_card())
+    for _ in range(2):
+        user_cards.append(deal_card())
+        computer_cards.append(deal_card())
 
-# Game loop
-while not is_game_over:
-    user_score = calc_score(user_cards)
-    computer_score = calc_score(computer_cards)
+    # Game loop
+    while not is_game_over:
+        user_score = calc_score(user_cards)
+        computer_score = calc_score(computer_cards)
 
-    print(f'Your cards: {user_cards}, current score: {user_score}')
-    print(f'Computer\'s first card: {computer_cards[0]}')
+        print(f'Your cards: {user_cards}, current score: {user_score}')
+        print(f'Computer\'s first card: {computer_cards[0]}')
 
-    if user_score == 0 or computer_score == 0 or user_score > 21:
-        is_game_over = True
-    else:
-        another_card = input('Type "y" to get another card, "n" to pass ')
-        if another_card == 'y':
-            user_cards.append(deal_card())
-        else:
+        if user_score == 0 or computer_score == 0 or user_score > 21:
             is_game_over = True
+        else:
+            another_card = input('Type "y" to get another card, "n" to pass ')
+            if another_card == 'y':
+                user_cards.append(deal_card())
+            else:
+                is_game_over = True
 
-while computer_score != 0 and computer_score < 17:
-    computer_cards.append(deal_card())
-    computer_score = calc_score(computer_cards)
+    while computer_score != 0 and computer_score < 17:
+        computer_cards.append(deal_card())
+        computer_score = calc_score(computer_cards)
 
-print(f"Your final hand: {user_cards}, final score: {user_score}")
-print(
-    f"Computer's final hand: {computer_cards}, final score: {computer_score}")
-print(compare(user_score, computer_score))
+    print(f"Your final hand: {user_cards}, final score: {user_score}")
+    print(
+        f"Computer's final hand: {computer_cards}, final score: {computer_score}")
+    print(compare(user_score, computer_score))
+
+
+while input("Do you want to play a Blackjack game? 'y' or 'n' ") == 'y':
+    play_game()
