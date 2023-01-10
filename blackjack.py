@@ -28,6 +28,7 @@ for _ in range(2):
     user_cards.append(deal_card())
     computer_cards.append(deal_card())
 
+# Game loop
 while not is_game_over:
     user_score = calc_score(user_cards)
     computer_score = calc_score(computer_cards)
