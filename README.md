@@ -1,1 +1,1 @@
-# blackjack
+Simple Blackjack terminal game
